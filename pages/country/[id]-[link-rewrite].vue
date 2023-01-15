@@ -1,5 +1,6 @@
 <template>
   <div class="container block m-auto p-4 mb-20 py-20 text-base sm:text-lg xl:text-xl">
+    <BaseLoader v-if="openLoader"/>
     <div class="flex flex-col gap-2">
       <div class="w-full flex gap-4 justify-between border-b border-emerald-500 p-2">
         <span>Name:</span>
@@ -52,6 +53,7 @@
 
 <script setup>
 const route = useRoute();
+const openLoader = ref(true)
 // fetch special country
 const url = "https://restcountries.com/v3.1/name/" + route.params.linkrewrite;
 
@@ -71,5 +73,13 @@ definePageMeta({
 
 useHead({
   title: route.params.linkrewrite,
+});
+
+const closeLoader = () => {
+  openLoader.value = false;
+}
+
+onMounted(() => {
+  setTimeout(closeLoader, 400);
 });
 </script>
