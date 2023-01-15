@@ -1,6 +1,5 @@
 <template>
-    <main>
-        <!-- <SectionSearch/> -->
-        <SectionProducts/>
-    </main>
+  <main>
+    <SectionCountries />
+  </main>
 </template>

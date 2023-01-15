@@ -8,69 +8,50 @@
 
 <style scoped>
 .loader {
-  font-size: 48px;
+  font-size: 72px;
   color: #fff;
-  display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 400;
+  width: 1em;
+  height: 1em;
+  box-sizing: border-box;
+  background-color: currentcolor;
   position: relative;
+  border-radius: 50%;
+  transform: rotateX(-60deg) perspective(1000px);
 }
-.loader:before {
-  content: "";
-  animation: 5s print linear alternate infinite;
-}
+.loader:before,
 .loader:after {
   content: "";
+  display: block;
   position: absolute;
-  right: -4px;
-  top: 50%;
-  transform: translatey(-45%);
-  width: 2px;
-  height: 1.3em;
-  background: currentColor;
-  opacity: 0.8;
-  animation: 1s blink steps(2) infinite;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  animation: flowerFlow 1s ease-out infinite;
+}
+.loader:after {
+  animation-delay: 0.4s;
 }
 
-@keyframes blink {
+@keyframes flowerFlow {
   0% {
-    visibility: hidden;
+    opacity: 1;
+    transform: rotate(0deg);
+    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+      0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+      0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+      0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
   }
   100% {
-    visibility: visible;
-  }
-}
-@keyframes print {
-  0% {
-    content: "L";
-  }
-  10% {
-    content: "Lo";
-  }
-  20% {
-    content: "Loa";
-  }
-  30% {
-    content: "Load";
-  }
-  40% {
-    content: "Loadi";
-  }
-  50% {
-    content: "Loadin";
-  }
-  60% {
-    content: "Loading";
-  }
-  70% {
-    content: "Loading.";
-  }
-  80% {
-    content: "Loading..";
-  }
-  90%,
-  100% {
-    content: "Loading...";
+    opacity: 0;
+    transform: rotate(180deg);
+    box-shadow: -1em -1em 0 -0.35em currentcolor,
+      0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor,
+      -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor,
+      -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor,
+      1em 1em 0 -0.35em currentcolor;
   }
 }
 </style>

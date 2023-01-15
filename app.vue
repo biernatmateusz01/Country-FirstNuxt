@@ -1,21 +1,16 @@
 <template>
-  <div>
-    <!-- <client-only> -->
-      <TheHeader />
-      <NuxtPage class="mt-32" />
-    <!-- </client-only> -->
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <style scoped>
-.special-item {
-  display: block;
-  margin: auto;
-  padding: 8px;
-  background: rebeccapurple;
-  border-radius: 8px;
-  width: 400px;
-  color: white;
-  margin-top: 16px;
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.4s;
+}
+.layout-enter-from,
+.layout-leave-to {
+  filter: grayscale(1);
 }
 </style>

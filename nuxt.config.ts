@@ -1,12 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-
-    postcss: {
-        plugins: {
-            tailwindcss: {},
-            autoprefixer: {}
-        }
+//   colorMode: {
+//     classSufix: "",
+//   },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
-    css: ['@/assets/css/main.css'],
-    // modules: ['@nuxtjs/axios']
-})
+  },
+  css: ["@/assets/css/main.css"],
+  modules: ["@nuxtjs/color-mode"],
+});
