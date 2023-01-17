@@ -1,17 +1,33 @@
 <template>
-  <div class="container block m-auto p-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-20">
-      <CountryItem
-        v-for="country in countries"
-        :key="country.name"
-        :country="country"
-      />
+  <div class="bg-gray-50 dark:bg-neutral-800">
+    <BaseModal v-if="modalOpen" @close-modal="closeModal">
+    <div class="h-1/2 w-1/2 bg-white rounded-md shadow-lg p-4">{{openCountry.name.common}}</div>
+    </BaseModal>
+    <div class="container block m-auto p-4 py-20">
+      <BaseFilters />
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+        <CountryItem
+        @click="openModal(country)"
+          v-for="country in countries"
+          :key="country.name"
+          :country="country"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const modalOpen = ref(false)
 const loaderActive = ref(true);
+const openCountry = ref('')
+
+const openModal = (country) => {
+  modalOpen.value = true
+  openCountry.value = country
+}
+
+const closeModal = () => modalOpen.value = false
 
 const closeLoader = () => {
   loaderActive.value = false;
@@ -20,6 +36,10 @@ const closeLoader = () => {
 const { data: countries } = await useFetch(
   `https://restcountries.com/v3.1/all`
 );
+
+useHead({
+  title: "Countries",
+});
 
 onMounted(() => {
   setTimeout(closeLoader, 200);
