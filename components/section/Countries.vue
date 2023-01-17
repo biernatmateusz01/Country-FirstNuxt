@@ -4,7 +4,7 @@
     <div class="h-1/2 w-1/2 bg-white rounded-md shadow-lg p-4">{{openCountry.name.common}}</div>
     </BaseModal>
     <div class="container block m-auto p-4 py-20">
-      <BaseFilters />
+      <!-- <BaseFilters /> -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
         <CountryItem
         @click="openModal(country)"
