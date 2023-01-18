@@ -7,7 +7,7 @@
         }"
         ><span class="text-white font-semibold">Countries App</span></NuxtLink
       >
-      <!-- <BaseSwitch class="absolute right-4"/> -->
+      <BaseSwitch class="absolute right-4"/>
     </div>
     
   </div>
