@@ -1,6 +1,6 @@
 <template>
   <div
-    class="shadow-md p-4 dark:bg-neutral-900 text-emerald-700 flex flex-col hover:bg-emerald-500 hover:text-white transition duration-300 ease-in-out"
+    class="shadow-md p-4 dark:bg-neutral-900 cursor-pointer text-emerald-700 flex flex-col hover:bg-emerald-500 hover:text-white transition duration-300 ease-in-out"
     @click="$emit('openModal', country)"
   >
     <span class="truncate">Name: {{ country.name.official }}</span>
