@@ -16,8 +16,30 @@
       </div>
     </BaseModal>
     <div class="container block m-auto p-4 py-20">
+      <!-- <input type="text" placeholder="ja" v-model="vMateusz"> -->
+      <div class="flex gap-2">
+        <BaseInput v-model="vFilter" :id="1" />
+        <button @click="getData" class="bg-emerald-400 py-3 px-6 text-white">
+          filter
+        </button>
+      </div>
+
+      <div
+        v-if="filtersCountries.length != 0"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4"
+      >
+        <CountryItem
+          @click="openModal(country)"
+          v-for="country in filtersCountries"
+          :key="country.name"
+          :country="country"
+        />
+      </div>
       <!-- <BaseFilters /> -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+      <div
+        v-else
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4"
+      >
         <CountryItem
           @click="openModal(country)"
           v-for="country in countries"
@@ -33,6 +55,8 @@
 const modalOpen = ref(false);
 const loaderActive = ref(true);
 const openCountry = ref("");
+const vFilter = ref("");
+const filtersCountries = ref([]);
 
 const openModal = (country) => {
   modalOpen.value = true;
@@ -40,6 +64,15 @@ const openModal = (country) => {
 };
 
 const closeModal = () => (modalOpen.value = false);
+
+const getData = () => {
+  console.log(countries.value);
+  filtersCountries.value = countries.value.filter(
+    (el) => el.region.toLowerCase() === vFilter.value.toLowerCase()
+  );
+  console.log(vFilter.value);
+  vFilter.value = "";
+};
 
 const closeLoader = () => {
   loaderActive.value = false;
