@@ -19,7 +19,7 @@
       <!-- <input type="text" placeholder="ja" v-model="vMateusz"> -->
       <div class="flex gap-2">
         <BaseInput v-model="vFilter" :id="1" />
-        <button @click="getData" class="bg-emerald-400 py-3 px-6 text-white">
+        <button @click="getFiltersData" class="bg-emerald-400 py-3 px-6 text-white">
           filter
         </button>
       </div>
@@ -65,12 +65,10 @@ const openModal = (country) => {
 
 const closeModal = () => (modalOpen.value = false);
 
-const getData = () => {
-  console.log(countries.value);
+const getFiltersData = () => {
   filtersCountries.value = countries.value.filter(
-    (el) => el.region.toLowerCase() === vFilter.value.toLowerCase()
+    (el) => el.region.toLowerCase() === vFilter.value.toLowerCase().trim()
   );
-  console.log(vFilter.value);
   vFilter.value = "";
 };
 
